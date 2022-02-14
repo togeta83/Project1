@@ -24,7 +24,7 @@ object Project1 {
         /**************val driver = "com.mysql.cj.jdbc.Driver"
         val url = "jdbc:mysql://localhost:3306/p1" // Modify for whatever port you are running your DB on
         val username = "root"
-        val password = "000B@nk@i000" // Update to include your password
+        val password = "############" // Update to include your password
         var connection:Connection = null
 
         Class.forName(driver)
@@ -132,11 +132,6 @@ object Project1 {
         hiveCtx.sql("CREATE TABLE IF NOT EXISTS popData (REGION INT, State INT, Name STRING, POPESTIMATE2020 INT, " + 
         "POPESTIMATE2021 INT, Births2020 INT, Births2021 INT, Deaths2020 INT, Deaths2021 INT)")
 
-        //Partition and bucketing attemp:
-        /***hiveCtx.sql("CREATE TABLE IF NOT EXISTS popData (State INT, Name STRING, POPESTIMATE2020 INT, " + 
-        "POPESTIMATE2021 INT, Births2020 INT, Births2021 INT, Deaths2020 INT, Deaths2021 INT) " + 
-        "PARTITIONED BY (REGION INT) CLUSTERED BY (STATE) INTO 50 BUCKETS STORED AS SEQUENCEFILE")***/
-        
         hiveCtx.sql("INSERT INTO popData SELECT REGION, State, Name, POPESTIMATE2020, POPESTIMATE2021, " + 
         "Births2020, Births2021, Deaths2020, Deaths2021 FROM temp_data")
         
